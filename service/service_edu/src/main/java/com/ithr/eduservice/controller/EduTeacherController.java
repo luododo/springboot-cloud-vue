@@ -28,6 +28,7 @@ import java.util.List;
 @Api(description = "讲师模块管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin//解决跨域
 public class EduTeacherController {
       @Autowired
     private EduTeacherService eduTeacherService;
@@ -72,9 +73,9 @@ public class EduTeacherController {
         Page<EduTeacher> page=new Page<>(current,limit);//page里面有所有数据
         eduTeacherService.page(page,null);
         long total = page.getTotal();//总记录数
-       if(limit>total){
-           return Result.no().message("没有这么多页参考total" +  "讲师有"+total+"条请输入"+total);
-       }
+//       if(limit>total){
+//           return Result.no().message("没有这么多页参考total" +  "讲师有"+total+"条请输入"+total);
+//       }
         List<EduTeacher> records = page.getRecords();//返回list集合
 //        Map<String,Object> map=new HashMap<>();
 //        map.put("total",total);
@@ -118,12 +119,14 @@ public class EduTeacherController {
             //意思是结束的时间要小于创建时间
             wrapper.le("gmt_create",end);
         }
+        //按时间排序
+        wrapper.orderByDesc("gmt_create");
         //调用方法实现分页查询
         eduTeacherService.page(pages,wrapper);
         long total = pages.getTotal();
-        if(limit>total){
-            return Result.no().message("没有这么多页参考total" +  "讲师有"+total+"条请输入"+total);
-        }
+//        if(limit>total){
+//            return Result.no().message("没有这么多页参考total" +  "讲师有"+total+"条请输入"+total);
+//        }
         List<EduTeacher> records = pages.getRecords();//返回list数据
         return Result.ok().data("total",total).data("records",records);
     }
