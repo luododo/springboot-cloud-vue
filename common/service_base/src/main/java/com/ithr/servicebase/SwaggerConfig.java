@@ -34,13 +34,13 @@ public class SwaggerConfig {
 
         return new ApiInfoBuilder()
 
-                .title("网站-课程中心API文档")
+                .title("罗东东测试")
 
                 .description("本文档描述了课程中心微服务接口定义")
 
                 .version("1.0")
 
-                .contact(new Contact("JAVA", "http://baiodu.com", "553173ss32@qq.com"))
+                .contact(new Contact("chu", "http://10.160.240.158:9000/rp/icar", "553173ss32@qq.com"))
 
                 .build();
 

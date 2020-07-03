@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,11 +37,11 @@ public class EduTeacherController {
 
       //查询所有讲师测试成功
     @ApiOperation(value = "查询所有讲师")
-      @GetMapping("selectTeacher")
+    @GetMapping("selectTeacher")
     public Result selectTeacher(){
           List<EduTeacher> list = eduTeacherService.list(null);
-        int size = list.size();
-        return Result.ok().data("itmes",list).data("size",size);
+        //int size = list.size();
+        return Result.ok().data("itmes",list);
 
 //        //自定义异常
 //        try {
@@ -56,6 +58,7 @@ public class EduTeacherController {
     public Result delete(@ApiParam(name = "id", value = "讲师ID", required = true)
                            @PathVariable String id){
         boolean b = eduTeacherService.removeById(id);
+        List a=new ArrayList();
         //如果真
         if(b){
             return Result.ok();
@@ -165,7 +168,7 @@ public class EduTeacherController {
     }
     @ApiOperation(value = "修改方式二")//测试成功
     @PutMapping("update2/{id}")
-    public Result update2(@PathVariable String id, @RequestBody EduTeacher eduTeacher){
+    public Result update2(@PathVariable String id , @RequestBody EduTeacher eduTeacher){
         eduTeacher.setId(id);
         eduTeacherService.updateById(eduTeacher);
         return Result.ok();

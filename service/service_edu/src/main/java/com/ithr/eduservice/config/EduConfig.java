@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.ithr.eduservice.mapper")
+@MapperScan("com.ithr.eduservice.mapper")//类似dao的实现类
 public class EduConfig {
 
     /**

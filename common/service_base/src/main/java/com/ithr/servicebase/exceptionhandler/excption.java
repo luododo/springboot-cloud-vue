@@ -19,7 +19,7 @@ public class excption {
     @ResponseBody
     public Result error(Exception e){
         e.printStackTrace();
-        return Result.no().message("系统出错了中下次在来");
+        return Result.no().message("全局异常系统出错了请检查数据在试");
     }
     //可以写特定异常复制上面一份
 
@@ -34,5 +34,6 @@ public class excption {
      return Result.no().code(e.getCode()).message(e.getMessage());
         //方式二
       //  return Result.no().message(e.error1().toString());
+        
     }
 }

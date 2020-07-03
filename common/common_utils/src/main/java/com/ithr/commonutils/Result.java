@@ -27,7 +27,7 @@ import java.util.Map;
     private Result(){}
 
     //成功
-   public static  Result ok(){
+   public static  Result  ok(){
      Result rs=new Result();
      rs.setSuccess(true);
      rs.setCode(ResultCode.SUCCESS );

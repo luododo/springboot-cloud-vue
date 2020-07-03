@@ -21,6 +21,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName("gmtModified",new Date(),metaObject);
     }
     //修改触发
+    //意思是修改的时候只修改这个就行了
     @Override
     public void updateFill(MetaObject metaObject) {
         this.setFieldValByName("gmtModified",new Date(),metaObject);

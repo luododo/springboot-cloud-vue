@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author com.hr.Text
  * @date 2020/4/4 - 0:23
  */
-@Data
+@Data//封装查条件
 public class TeacherQuery implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value = "教师名称,模糊查询")

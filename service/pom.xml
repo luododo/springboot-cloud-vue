@@ -14,7 +14,10 @@
     <modules>
         <module>service_edu</module>
         <module>service_oss</module>
-        <module>service_oss1</module>
+        <module>service_oss2</module>
+        <module>service_cms</module>
+        <module>service_msm</module>
+        <module>service_ucenter</module>
     </modules>
        <dependencies>
         <dependency>
@@ -23,45 +26,31 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!--<dependency>-->
-
-        <!--<groupId>org.springframework.cloud</groupId>-->
-
-        <!--<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
-
-        <!--</dependency>-->
+        <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
 
 
-        <!--hystrix依赖，主要是用  @HystrixCommand -->
-
-        <!--<dependency>-->
-
-        <!--<groupId>org.springframework.cloud</groupId>-->
-
-        <!--<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>-->
-
-        <!--</dependency>-->
+        <!--hystrix依赖，主要是用  @HystrixCommand-->
+        <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
 
 
-        <!--服务注册-->
+          <!--服务注册-->
 
-        <!--<dependency>-->
-
-        <!--<groupId>org.springframework.cloud</groupId>-->
-
-        <!--<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-
-        <!--</dependency>-->
+        <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
         <!--服务调用-->
-
-        <!--<dependency>-->
-
-        <!--<groupId>org.springframework.cloud</groupId>-->
-
-        <!--<artifactId>spring-cloud-starter-openfeign</artifactId>-->
-
-        <!--</dependency>-->
+        <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
 
 
         <dependency>
@@ -98,7 +87,6 @@
         <!--swagger-->
 
         <dependency>
-
             <groupId>io.springfox</groupId>
 
             <artifactId>springfox-swagger2</artifactId>
@@ -179,4 +167,20 @@
         </dependency>
 
     </dependencies>
+    <!--解决rg.apache.ibatis.binding.BindingException: Invalid bound statement (not found)
+     扫描不到mapper的xml文件
+    -->
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>
