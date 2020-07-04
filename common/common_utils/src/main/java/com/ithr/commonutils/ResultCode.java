@@ -7,5 +7,5 @@ package com.ithr.commonutils;
 public interface ResultCode {
         public static Integer SUCCESS=20000;//成功
         public static  Integer ERROP=20001;//失败
-
+     //罗东东
 }
