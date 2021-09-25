@@ -30,7 +30,6 @@ public class MsmController {
 
     //发送短信的方法
     @PostMapping("send/{phone}")
-
     public Result senMsm(@PathVariable String phone){
         //1 从redis获取验证码，如果获取到直接返回
         String code = redisTemplate.opsForValue().get(phone);
@@ -52,7 +51,7 @@ public class MsmController {
             //发送成功，把发送成功验证码放到redis里面
             //key phone values code
             //设置5分钟有效时间
-            redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);;
+            redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
             return Result.ok().message("短信发送成功");
         } else {
             return Result.no().message("短信发送失败");

@@ -6,6 +6,9 @@ import com.ithr.eduservice.service.EduTeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  * <p>
  * 讲师 服务实现类
@@ -16,5 +19,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeacher> implements EduTeacherService {
+
+    public static void main(String[] args) {
+        String A="1";
+        String B="1";
+        System.out.println(String.format("串层%s-%s", A, B));
+    }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author com.hr.Text
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient//nacos注册
 @EnableFeignClients//服务调用
 @ComponentScan(basePackages = {"com.ithr"})
+@EnableScheduling
 public class EduApplocation {
     public static void main(String[] args) {
         SpringApplication.run(EduApplocation.class,args);

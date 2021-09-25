@@ -10,15 +10,23 @@ import com.ithr.eduservice.listener.SubjecExcelListener;
 import com.ithr.eduservice.mapper.EduSubjectMapper;
 import com.ithr.eduservice.service.EduSubjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.velocity.runtime.directive.Foreach;
+import jdk.nashorn.internal.runtime.logging.Logger;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -29,6 +37,7 @@ import java.util.List;
  * @since 2020-04-11
  */
 @Service
+@Slf4j
 public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubject> implements EduSubjectService {
     //添加课程分类
     @Override
@@ -56,7 +65,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
         QueryWrapper<EduSubject> qwtow=new QueryWrapper();
         //不等于
         qwtow.ne("parent_id","0");
-        List<EduSubject> towSubjects = baseMapper.selectList(qwtow);
+        List<EduSubject>    towSubjects = baseMapper.selectList(qwtow);
 
         //创建list集合 用于存最终一级数据封装
         ArrayList<OneSubject> oneSubjectList = new ArrayList<>();
@@ -94,4 +103,52 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
 
         return oneSubjectList;
     }
+
+    @Scheduled(fixedDelay = 3000 ,initialDelay = 300)
+    public void luood(){
+        int A=1;
+        System.out.println("罗玉婷"+A++);
+    }
+
+
+
+
+    public static void main(String[] args) {
+        int day = 30;
+        //当前时间
+        LocalDate now = LocalDate.now();
+        LocalDateTime localDateTime = LocalDateTime.now().minusDays(day);
+        System.out.println(localDateTime);
+        for (int i = day - 1; i >= 0; i--) {
+            LocalDate localDate = now.minusDays(i);
+            LocalDateTime beginTime = localDate.atTime(0, 0, 0);
+            LocalDateTime endTime = localDate.atTime(23, 59, 59);
+            String format = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            System.out.println(format);
+        }
+
+
+        String str = String.format("Hi,-%s", "小超");
+        System.out.println(str);
+        int[][] LOCK_STATUS = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
+        int chestCount = LOCK_STATUS.length;
+        List<String> unlockList = new ArrayList<>();
+        for (int i = 0; i < chestCount; i++) {
+            int[] lockStatus = LOCK_STATUS[i];
+            for (int i1 = 0; i1 < lockStatus.length; i1++) {
+                if (lockStatus[i1] == 0) {
+                    log.error("{}柜{}层未锁", i + 1, i1 + 1);
+                    unlockList.add(String.format("%s-%s", i + 1, i1 + 1));
+                }
+            }
+            if (!CollectionUtils.isEmpty(unlockList)) {
+                String error = String.format("[%s]未正常归位", String.join(",", unlockList));
+                log.info(error);
+
+            }
+        }
+
+    }
+
 }
+

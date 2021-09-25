@@ -7,7 +7,6 @@ import com.ithr.commonutils.Result;
 import com.ithr.eduservice.entity.EduTeacher;
 import com.ithr.eduservice.entity.vo.TeacherQuery;
 import com.ithr.eduservice.service.EduTeacherService;
-import com.ithr.servicebase.exceptionhandler.IthrException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -36,9 +35,8 @@ public class EduTeacherController {
     private EduTeacherService eduTeacherService;
 
       //查询所有讲师测试成功
-    @ApiOperation(value = "查询所有讲师")
-    @GetMapping("selectTeacher")
-    public Result selectTeacher(){
+     @GetMapping("selectTeacher")
+     public Result selectTeacher(){
           List<EduTeacher> list = eduTeacherService.list(null);
         //int size = list.size();
         return Result.ok().data("itmes",list);

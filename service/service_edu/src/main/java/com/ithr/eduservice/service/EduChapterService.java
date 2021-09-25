@@ -15,7 +15,11 @@ import java.util.List;
  * @since 2020-04-12
  */
 public interface EduChapterService extends IService<EduChapter> {
-    ////大纲列表 根据课程id进行查询
+    /**
+     * 大纲列表 根据课程id进行查询
+     * @param courseId
+     * @return
+     */
     List<OneChapter> getChapterVideoByCourseId(String courseId);
     //删除章节方法
     boolean deleteChapter(String id);
