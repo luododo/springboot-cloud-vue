@@ -48,6 +48,7 @@ public class VodController {
            request.setVideoIds(id);
            //调用初始对象的方法进行删除
            client.getAcsResponse(request);
+           System.out.println("+++++");
            return Result.ok();
        }catch (Exception e){
            e.printStackTrace();
